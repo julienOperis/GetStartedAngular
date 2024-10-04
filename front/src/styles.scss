@@ -1,0 +1,243 @@
+//----------------------------------*\
+// Fonts
+//----------------------------------*/
+@import "assets/fonts/homenaje-regular/homenaje-regular.css";
+@import "assets/fonts/saoui-regular/saoui-regular.css";
+html {
+  background-image: url(assets/img/backgrond.png);
+}
+
+body,
+html {
+  --red1:#fef2f3;
+  --red2:#fee5e7;
+  --red3:#fdd7da;
+  --red4:#f7616d;
+  --red5:#f53948;
+
+  margin: 0;
+  padding: 0;
+  font-family: "HomenajeRegular", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.555rem;
+  --gray1:#fff;
+  --gray2:#fafafa;
+  --gray2-1:#f2f2f2;
+  --gray3:#dcdde0;
+  --gray4:#c9cacf;
+  --gray4-1:#b6b7be;
+  --gray5:#838592;
+  --gray6:#5d5d6c;
+  --gray6-1:#434651;
+  --gray6-2:#363a42;
+  --gray7:#21272b;
+  --gray7-1:#1e232a;
+  --gray8:#161a1f;
+  --gray9:#06070d;
+  --gray1-rgb:255,255,255;
+  --gray2-rgb:250,250,250;
+  --gray2-1-rgb:242,242,242;
+  --gray3-rgb:220,221,224;
+  --gray4-rgb:201,202,207;
+  --gray4-1-rgb:182,183,190;
+  --gray5-rgb:131,133,146;
+  --gray6-rgb:93,93,108;
+  --gray6-1-rgb:67,70,81;
+  --gray6-2-rgb:54,58,66;
+  --gray7-rgb:33,39,43;
+  --gray8-rgb:22,26,31;
+  --gray9-rgb:6,7,13;
+  --green1:#e8fff7;
+  --green2:#b9ffe8;
+  --green3:#9affde;
+  --green4:#00e59b;
+  --green5:#00c787;
+  --green6:#009f6c;
+  --green7:#006646;
+  --green8:#004c34;
+  --green9:#002e1f;
+  --green1-rgb:232,255,247;
+  --green2-rgb:185,255,232;
+  --green3-rgb:154,255,222;
+  --green4-rgb:0,229,155;
+  --green5-rgb:0,199,135;
+  --green6-rgb:0,159,108;
+  --green7-rgb:0,102,70;
+  --green8-rgb:0,76,52;
+  --green9-rgb:0,46,31;
+  --khaki0:#f3f6f2;
+  --khaki1:#e7ede4;
+  --khaki2:#dee7da;
+  --khaki3:#d2decc;
+  --khaki3-1:#c0cdbc;
+  --khaki3-2:#b6c1b3;
+  --khaki4:#a8b2a7;
+  --khaki5:#8b9e8f;
+  --khaki6:#617362;
+  --khaki6-1:#546858;
+  --khaki7:#465c4d;
+  --khaki8:#314537;
+  --khaki9:#213126;
+  --khaki0-rgb:243,246,242;
+  --khaki1-rgb:231,237,228;
+  --khaki2-rgb:222,231,218;
+  --khaki3-rgb:210,222,204;
+  --khaki3-1-rgb:192,205,188;
+  --khaki3-2-rgb:182,193,179;
+  --khaki4-rgb:168,178,167;
+  --khaki5-rgb:139,158,143;
+  --khaki6-rgb:97,115,98;
+  --khaki6-1-rgb:84,104,88;
+  --khaki7-rgb:70,92,77;
+  --khaki8-rgb:49,69,55;
+  --khaki9-rgb:33,49,38;
+  --lightblue:#75deff;
+  --lightblue-rgb:117,222,255;
+  --blue1:#f6f6ff;
+  --blue2:#ededff;
+  --blue3:#e3e4ff;
+  --blue4:#a6a8ff;
+  --blue5:#7579ff;
+  --blue6:#5050c0;
+  --blue7:#3e3ead;
+  --blue8:#2a2a83;
+  --blue9:#222265;
+  --blue1-rgb:246,246,255;
+  --blue2-rgb:237,237,255;
+  --blue3-rgb:227,228,255;
+  --blue4-rgb:166,168,255;
+  --blue5-rgb:117,121,255;
+  --blue6-rgb:80,80,192;
+  --blue7-rgb:62,62,173;
+  --blue8-rgb:42,42,131;
+  --blue9-rgb:34,34,101;
+  --purple1:#fcf2ff;
+  --purple2:#f5d8ff;
+  --purple3:#eebdff;
+  --purple4:#e7a3ff;
+  --purple5:#da77fd;
+  --purple6:#cd4bfb;
+  --purple7:#ae42d7;
+  --purple8:#8f38b4;
+  --purple9:#702f90;
+  --purple1-rgb:252,242,255;
+  --purple2-rgb:245,216,255;
+  --purple3-rgb:238,189,255;
+  --purple4-rgb:231,163,255;
+  --purple5-rgb:218,119,253;
+  --purple6-rgb:205,75,251;
+  --purple7-rgb:174,66,215;
+  --purple8-rgb:143,56,180;
+  --purple9-rgb:112,47,144;
+  --red1:#fef2f3;
+  --red2:#fee5e7;
+  --red3:#fdd7da;
+  --red4:#f7616d;
+  --red5:#f53948;
+  --red6:#ac0916;
+  --red7:#73060f;
+  --red8:#4d040a;
+  --red9:#390307;
+  --red1-rgb:254,242,243;
+  --red2-rgb:254,229,231;
+  --red3-rgb:253,215,218;
+  --red4-rgb:247,97,109;
+  --red5-rgb:245,57,72;
+  --red6-rgb:172,9,22;
+  --red7-rgb:115,6,15;
+  --red8-rgb:77,4,10;
+  --red9-rgb:57,3,7;
+  --orange1:#fef6f3;
+  --orange2:#fbede7;
+  --orange3:#fcd2c5;
+  --orange4:#fdb7a3;
+  --orange5:#fe9c81;
+  --orange6:#ff815f;
+  --orange7:#ef6939;
+  --orange8:#df5112;
+  --orange9:#cd4b11;
+  --orange1-rgb:254,246,243;
+  --orange2-rgb:251,237,231;
+  --orange3-rgb:252,210,197;
+  --orange4-rgb:253,183,163;
+  --orange5-rgb:254,156,129;
+  --orange6-rgb:255,129,95;
+  --orange7-rgb:239,105,57;
+  --orange8-rgb:223,81,18;
+  --orange9-rgb:205,75,17;
+  --g-core-generic:var(--orange8);
+  --g-core-access:#ffb35c;
+  --g-core-plus:#ff815f;
+  --g-core-pro:#e776ff;
+  --g-core-pro-plus:#ff94b4;
+  --g-typography-primary-dark:var(--gray2);
+  --g-typography-secondary-dark:var(--gray4);
+  --g-typography-tertiary-dark:var(--gray5);
+  --g-typography-primary-light:var(--gray9);
+  --g-typography-secondary-light:var(--gray6);
+  --g-typography-tertiary-light:var(--gray5)
+}
+
+input,
+button {
+  outline: none;
+  font-family: "HomenajeRegular", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+input {
+  border: 3px;
+  height: 2.5rem;
+  background-color:var(--gray2-1);
+  border-radius: 8px;
+  padding-inline-start: 1rem;
+  border-style: solid;
+  border-width: 1px;
+  border-color:var(--gray6-2);
+  &.error {    
+    background: var(--red1);
+    border-color:var(--red5);
+  }
+  &.valid {
+    background: var(--green1);
+    border-color:var(--green5);
+  }
+}
+/* Show red borders when filled, but invalid */
+// input:not(:placeholder-shown) {
+//   border-color: hsl(0, 76%, 50%);
+// }
+
+/* Show green borders when valid */
+// input:valid {
+//   border-color: hsl(120, 76%, 50%);
+// }
+
+button {
+  border: none;
+  height: 2.5rem;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  transition: 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+  a {
+    text-decoration: none;
+  }
+  a:link {
+    color: #333;
+  }
+  a:visited {
+    color: #444;
+  }
+  a:hover,
+  a:focus {
+    color: #ddc19d;
+  }
+}

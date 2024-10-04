@@ -1,0 +1,51 @@
+
+.connexion-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 30%;
+
+    input,
+    button {
+      width: 100%;
+      
+    }
+
+    p {
+      width: 100%;
+      border: none;
+      height: 2.5rem;
+      background-color: rgb(225, 225, 225);
+      border-radius: 8px;
+      padding-top: 8px;
+      padding-inline-start: 1rem;
+      text-align: center;
+      &.msg-error {
+        margin: 0;
+        margin-bottom: 30px;
+        font-size: 5ch;
+        font-family: "SaouiRegular";
+        background-color: rgb(233, 128, 8);
+        text-align-last: auto;
+        color: rgb(246, 244, 244);
+        font-weight :bold
+      }
+    }
+  }
+
+  button {
+    width: 30%;
+  }
+}
