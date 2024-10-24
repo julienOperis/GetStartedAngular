@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
-import {RouterModule} from '@angular/router';
+import {RouterLink, RouterModule} from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -11,7 +11,7 @@ import {
 @Component({
   selector: 'app-connexion',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, NgClass, RouterModule],
   templateUrl: './connexion.component.html',
   styleUrl: './connexion.component.scss',
 })

@@ -1,1 +1,26 @@
-<p>inscription works!</p>
+<form 
+class="login-form" 
+[formGroup]="inscriptionForm"
+(submit)="inscription()" >
+    <p>Formulaire d'inscription</p>
+    <input
+    placeholder="firstName"
+    type="firstName"
+    />
+    <input
+    placeholder="lastName"
+    type="lastName"
+    />
+    <input
+    formControlName="email"
+    placeholder="Email"
+    type="email"
+    />
+    <input
+    formControlName="password"
+    placeholder="Password"
+    type="password"
+    />
+    <button type="submit">s'inscrire</button>
+</form>
+<button routerLink="/" >Connexion</button>
