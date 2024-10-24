@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {RouterLink, RouterModule} from '@angular/router';
 import {
   FormBuilder,
@@ -7,7 +7,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-
+import { Data } from '@angular/router';
+import { ServiceSuccess } from '../services/serviceSuccess.service';
 @Component({
   selector: 'app-connexion',
   standalone: true,
@@ -15,12 +16,26 @@ import {
   templateUrl: './connexion.component.html',
   styleUrl: './connexion.component.scss',
 })
-export class ConnexionComponent {
+
+export class ConnexionComponent implements OnInit{
+
+  ngOnInit(): void {    
+    let successdata:Data;
+    
+    successdata = this.serviceSuccess.getDataSuccess();
+    if(successdata){
+      console.log(' ngOnInit getDataSuccess');
+      console.log(successdata['email']);
+      this.loginForm.get('email')?.patchValue(successdata['email']);
+      this.loginForm.get('password')?.patchValue(successdata['password']);      
+    }
+  }
+
   public loginForm: FormGroup;
   public isFormSubmitted: boolean = false;
   public showMsgInvalidFrom: boolean;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private serviceSuccess:ServiceSuccess) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],

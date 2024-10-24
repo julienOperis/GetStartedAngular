@@ -1,26 +1,32 @@
-<form 
-class="login-form" 
-[formGroup]="inscriptionForm"
-(submit)="inscription()" >
-    <p>Formulaire d'inscription</p>
-    <input
-    placeholder="firstName"
-    type="firstName"
-    />
-    <input
-    placeholder="lastName"
-    type="lastName"
-    />
-    <input
-    formControlName="email"
-    placeholder="Email"
-    type="email"
-    />
-    <input
-    formControlName="password"
-    placeholder="Password"
-    type="password"
-    />
-    <button type="submit">s'inscrire</button>
-</form>
-<button routerLink="/" >Connexion</button>
+<div class="inscription-container">
+    <form 
+    class="inscription-form" 
+    [formGroup]="inscriptionForm"
+    (submit)="inscription()" >
+        <h1>Formulaire d'inscription</h1>
+        <input
+        formControlName="firstName"
+        placeholder="Firstame"
+        type="firstName"
+        value="Jhon"
+        />
+        <input
+        formControlName="lastName"
+        placeholder="Lastname"
+        type="lastName"
+        value="Due"
+        />
+        <input
+        formControlName="email"
+        placeholder="Email"
+        type="email"
+        />
+        <input
+        formControlName="password"
+        placeholder="Password"
+        type="password"
+        />
+        <button type="submit">S'inscrire</button>
+        <button routerLink="/connexion" >Connexion</button>
+    </form>
+</div>

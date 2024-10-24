@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
+import {Router, RouterModule} from '@angular/router';
 import { UserRequest } from '../models/user.interface';
 import {
   FormBuilder,
@@ -7,12 +8,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import {  tap } from 'rxjs';
+import {  first, tap } from 'rxjs';
 import { InscriptionService } from './inscription.service';
+import { ServiceSuccess } from '../services/serviceSuccess.service';
+import { ConnexionComponent } from '../connexion/connexion.component';
 @Component({
   selector: 'app-inscription',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [NgClass, ReactiveFormsModule, RouterModule],
   templateUrl: './inscription.component.html',
   styleUrl: './inscription.component.scss'
 })
@@ -21,8 +24,10 @@ export class InscriptionComponent {
   public userForm:UserRequest;
 
 
-  constructor(private fb:FormBuilder, private inscriptionService: InscriptionService) {
+  constructor(private router:Router,private fb:FormBuilder, private inscriptionService: InscriptionService, private serviceSuccess: ServiceSuccess) {
     this.inscriptionForm = this.fb.group({
+      firstName:[''],
+      lastName:[''],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
@@ -43,8 +48,21 @@ export class InscriptionComponent {
 
   public inscription():void{//Observable<User>
     //this.inscritObs= this.inscriptionService.inscription(this.inscriptionForm.value)
-    this.inscriptionService.inscription(this.inscriptionForm.value).pipe(tap((reponse)=>console.log(reponse))).subscribe();
-    
-  }
+    //this.inscriptionService.inscription(this.inscriptionForm.value).pipe(tap((reponse)=>console.log(reponse.email))).subscribe();
+    this.inscriptionService.inscription(this.inscriptionForm.value).pipe(tap((reponse)=>this.serviceSuccess.setDataSuccess(reponse))).subscribe({
+      next: message => console.log(message),
+      error: err => console.error('Quelque chose s\'est mal passé :', err),
+      complete: () => this.router.navigate(['/connexion'])
+    });
+    /*
+    this.inscriptionService.inscription(this.inscriptionForm.value).pipe(tap((reponse)=>this.serviceSuccess.setDataSuccess(reponse))).subscribe({
+      next: message => console.log(message),
+      error: err => console.error('Quelque chose s\'est mal passé :', err),
+      complete: () => console.log('L\'histoire est terminée !')
+    });
+    */
 
+    //status: 409, error statusCode	409
+    //status: 201, Create
+  }
 }

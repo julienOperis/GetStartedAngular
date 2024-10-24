@@ -5,6 +5,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 
 export const routes: Routes = [
     { path: 'inscription', component: InscriptionComponent},
+    { path: 'connexion', component: ConnexionComponent },
     { path: '', component: ConnexionComponent },
     { path: '**', component: PageNotFoundComponent }
     //{ path: 'inscription', component: InscriptionComponent}

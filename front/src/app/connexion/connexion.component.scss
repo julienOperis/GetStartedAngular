@@ -8,7 +8,11 @@
   align-items: center;
   gap: 1rem;
   
-
+  button {
+    width: 30%;
+    font-size: 17px;
+  }
+  
   .login-form {
     display: flex;
     flex-direction: column;
@@ -17,10 +21,13 @@
     gap: 1rem;
     width: 30%;
 
-    input,
+    input {
+      width: 95%;
+      
+    }
     button {
       width: 100%;
-      
+
     }
 
     p {
@@ -42,9 +49,5 @@
         font-weight :bold
       }
     }
-  }
-
-  button {
-    width: 30%;
   }
 }
