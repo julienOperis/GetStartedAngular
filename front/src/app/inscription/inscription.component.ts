@@ -12,10 +12,11 @@ import {  first, tap } from 'rxjs';
 import { InscriptionService } from './inscription.service';
 import { ServiceSuccess } from '../services/serviceSuccess.service';
 import { ConnexionComponent } from '../connexion/connexion.component';
+import { DialoggenericComponent } from "../dialoggeneric/dialoggeneric.component";
 @Component({
   selector: 'app-inscription',
   standalone: true,
-  imports: [NgClass, ReactiveFormsModule, RouterModule],
+  imports: [NgClass, ReactiveFormsModule, RouterModule, DialoggenericComponent],
   templateUrl: './inscription.component.html',
   styleUrl: './inscription.component.scss'
 })
