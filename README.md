@@ -22,7 +22,12 @@ si tu veux faire du mobile en m?me temps que du web tu peux utiliser Ionic avec 
 Cest un framework qui vient au dessus d'angular et qui permet d'avoir le m?me code pour web, ios et android
 https://ionicframework.com/
 
-tu peux utiliser ngx-translate avec Angula
-tu auras un JSON par langue 
-et ton appli peut switch de l'un ? l'autre
-photoshop 
+tu peux utiliser ngx-translate avec Angula tu auras un JSON par langue  et ton appli peux switcher de l'un a l'autre
+
+https://rxmarbles.com/
+
+# Input Parent vers l'enfant Oupout invers pour des composants
+# Guards - Protection des routes (avoir acc?s que si on ? un compte ? telle route)
+# Resolvers - Permet de faire des choses avant l'initialisation des pages, (Information du profil utilisateurs au chargement de la page utilisateur )
+# Interceptors - Intecepter les requ?te http, pour la gestion d'erreur 
+# Store - Service Angular ou (Librairies ngRx plus tard) Moyen de partager les données sans qu'il soit parents
