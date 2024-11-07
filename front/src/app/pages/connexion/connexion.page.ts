@@ -5,11 +5,9 @@ import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 import { Data } from '@angular/router';
-import { emailValidator } from '../../core/validators/email.validator';
-import { FormService } from '../../core/services/form.service';
+import { AUTH_FORM_MAIL_PASS, FormService } from '../../core/services/form.service';
 import { ServiceSuccess } from '../../core/services/serviceSuccess.service';
 @Component({
   selector: 'app-connexion',
@@ -37,10 +35,9 @@ export class ConnexionComponent implements OnInit{
   public showMsgInvalidFrom: boolean;
 
   constructor(private fb: FormBuilder, private serviceSuccess:ServiceSuccess, public formService:FormService) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, emailValidator()]],
-      password: ['', Validators.required],
-    });
+    this.loginForm = this.fb.group(AUTH_FORM_MAIL_PASS);
+    console.log("AUTH_FORM_MAIL_PASS");
+    console.log(AUTH_FORM_MAIL_PASS);
   }
 
   public onBouttonConnexion(): void {

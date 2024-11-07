@@ -6,24 +6,36 @@
         <h1>Formulaire d'inscription</h1>
         <app-dialoggeneric></app-dialoggeneric>
         <input
-        formControlName="firstName"
+        [ngClass]="{
+            error: formService.formIsInvalidTouched('firstname',inscriptionForm)
+          }"
+        formControlName="firstname"
         placeholder="Firstame"
         type="firstName"
         />
         <input
-        formControlName="lastName"
+        [ngClass]="{
+            error: formService.formIsInvalidTouched('lastname',inscriptionForm)
+          }"
+        formControlName="lastname"
         placeholder="Lastname"
         type="lastName"
         />
         <input
+        [ngClass]="{
+          error: formService.formIsInvalidTouched('email',inscriptionForm)
+        }"
         formControlName="email"
         placeholder="Email"
         type="email"
         />
         <input
+        [ngClass]="{
+          error: formService.formIsInvalidTouched('password',inscriptionForm)
+        }"
         formControlName="password"
-        placeholder="Password"
         type="password"
+        placeholder="Mot de passe"
         />
         <button type="submit">S'inscrire</button>
         <button routerLink="/connexion" >Connexion</button>
