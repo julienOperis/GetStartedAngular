@@ -9,17 +9,22 @@
       Formulaire invalide
     </p>
     }
+    @let emailInvalide = loginForm.controls['email'].errors?.['emailInvalide'];
+    @if(emailInvalide){ 
+      <p>{{emailInvalide.message}}</p>
+    }
     <input
       [ngClass]="{
-        error: formIsInvalidTouched('email')
+        error: formService.formIsInvalidTouched('email',loginForm)
       }"
       formControlName="email"
       placeholder="Email"
       type="email"
     />
+
     <input
       [ngClass]="{
-        error: formIsInvalidTouched('password')
+        error: formService.formIsInvalidTouched('password',loginForm)
       }"
       formControlName="password"
       type="password"

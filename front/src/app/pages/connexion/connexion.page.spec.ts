@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ConnexionComponent} from './connexion.component';
-import { InscriptionComponent} from '../inscription/inscription.component';
+import { ConnexionComponent} from './connexion.page';
+import { InscriptionComponent} from '../inscription/inscription.page';
 
 describe('ConnexionComponent', () => {
   let inscription:  InscriptionComponent

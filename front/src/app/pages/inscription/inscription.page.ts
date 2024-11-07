@@ -1,7 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import {Router, RouterModule} from '@angular/router';
-import { UserRequest } from '../models/user.interface';
+import { UserRequest } from '../../core/models/user.interface';
 import {
   FormBuilder,
   FormGroup,
@@ -9,23 +9,24 @@ import {
   Validators,
 } from '@angular/forms';
 import {  first, tap } from 'rxjs';
-import { InscriptionService } from './inscription.service';
-import { ServiceSuccess } from '../services/serviceSuccess.service';
-import { ConnexionComponent } from '../connexion/connexion.component';
-import { DialoggenericComponent } from "../dialoggeneric/dialoggeneric.component";
+import { InscriptionService } from '../../core/services/inscription.service';
+import { ConnexionComponent } from '../connexion/connexion.page';
+import { DialoggenericComponent } from "../../components/dialoggeneric/dialoggeneric.component";
+import { FormService } from '../../core/services/form.service';
+import { ServiceSuccess } from '../../core/services/serviceSuccess.service';
 @Component({
   selector: 'app-inscription',
   standalone: true,
   imports: [NgClass, ReactiveFormsModule, RouterModule, DialoggenericComponent],
-  templateUrl: './inscription.component.html',
-  styleUrl: './inscription.component.scss'
+  templateUrl: './inscription.page.html',
+  styleUrl: './inscription.page.scss'
 })
 export class InscriptionComponent {
   public inscriptionForm: FormGroup;
   public userForm:UserRequest;
 
 
-  constructor(private router:Router,private fb:FormBuilder, private inscriptionService: InscriptionService, private serviceSuccess: ServiceSuccess) {
+  constructor(private router:Router,private fb:FormBuilder, private inscriptionService: InscriptionService, private serviceSuccess: ServiceSuccess,public formService:FormService) {
     this.inscriptionForm = this.fb.group({
       firstName:[''],
       lastName:[''],

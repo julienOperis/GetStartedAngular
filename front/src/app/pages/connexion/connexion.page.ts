@@ -8,13 +8,15 @@ import {
   Validators,
 } from '@angular/forms';
 import { Data } from '@angular/router';
-import { ServiceSuccess } from '../services/serviceSuccess.service';
+import { emailValidator } from '../../core/validators/email.validator';
+import { FormService } from '../../core/services/form.service';
+import { ServiceSuccess } from '../../core/services/serviceSuccess.service';
 @Component({
   selector: 'app-connexion',
   standalone: true,
   imports: [ReactiveFormsModule, NgClass, RouterModule],
-  templateUrl: './connexion.component.html',
-  styleUrl: './connexion.component.scss',
+  templateUrl: './connexion.page.html',
+  styleUrl: './connexion.page.scss',
 })
 
 export class ConnexionComponent implements OnInit{
@@ -27,7 +29,6 @@ export class ConnexionComponent implements OnInit{
       console.log(' ngOnInit getDataSuccess');
       console.log(successdata['email']);
       this.loginForm.get('email')?.patchValue(successdata['email']);
-      this.loginForm.get('password')?.patchValue(successdata['password']);      
     }
   }
 
@@ -35,9 +36,9 @@ export class ConnexionComponent implements OnInit{
   public isFormSubmitted: boolean = false;
   public showMsgInvalidFrom: boolean;
 
-  constructor(private fb: FormBuilder, private serviceSuccess:ServiceSuccess) {
+  constructor(private fb: FormBuilder, private serviceSuccess:ServiceSuccess, public formService:FormService) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, emailValidator()]],
       password: ['', Validators.required],
     });
   }
@@ -55,13 +56,6 @@ export class ConnexionComponent implements OnInit{
       this.loginForm.get('password')?.patchValue('');
     }
     this.isFormSubmitted = false;
-  }
-  public formIsInvalidTouched(formControl: string): boolean {
-
-    return (
-      (this.loginForm.get(formControl)?.invalid &&
-        this.loginForm.get(formControl)?.touched) as boolean
-    );
   }
 
 }
