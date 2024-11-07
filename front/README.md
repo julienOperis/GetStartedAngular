@@ -26,6 +26,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
+https://rxmarbles.com/
+
 # Input Parent vers l'enfant Oupout invers pour des composants
 # Guards - Protection des routes (avoir acc?s que si on ? un compte ? telle route)
 # Resolvers - Permet de faire des choses avant l'initialisation des pages, (Information du profil utilisateurs au chargement de la page utilisateur )
