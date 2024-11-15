@@ -1,2 +1,5 @@
+@if (showAlert$ | async; as showAlert ) {
+<app-alert [message]="showAlert" [type]="'error'"></app-alert>
+}
 <app-header></app-header>
 <router-outlet></router-outlet>

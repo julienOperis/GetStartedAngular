@@ -13,12 +13,11 @@ import { catchError, EMPTY, finalize, first, take, tap } from 'rxjs';
 
 import { ConnexionComponent } from '../connexion/connexion.page';
 import { DialoggenericComponent } from '../../components/dialoggeneric/dialoggeneric.component';
-import {
-  FormService
-} from '../../core/services/form.service';
+import { FormService } from '../../core/services/form.service';
 import { ServiceSuccess } from '../../core/services/serviceSuccess.service';
 import { InscriptionService } from '../../core/services/inscription.service';
 import { emailValidator } from '../../core/validators/email.validator';
+import { AlertService } from '../../core/services/alert.service';
 @Component({
   selector: 'app-inscription',
   standalone: true,
@@ -36,16 +35,24 @@ export class InscriptionComponent {
     private fb: FormBuilder,
     private inscriptionService: InscriptionService,
     private serviceSuccess: ServiceSuccess,
+    private alertService:AlertService,
     public formService: FormService
   ) {
-    this.inscriptionForm = this.fb.group(
-      {
-        firstname: new FormControl('', [Validators.required,Validators.minLength(4)]),
-        lastname: new FormControl('',[Validators.required,Validators.minLength(4)]),
-        email: new FormControl('', [Validators.required,  emailValidator()]),
-        password: new FormControl('',[Validators.required,Validators.minLength(4)]),
-      }
-    );    
+    this.inscriptionForm = this.fb.group({
+      firstname: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+      lastname: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+      email: new FormControl('', [Validators.required, emailValidator()]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+    });
   }
 
   public inscription(): void {
@@ -55,12 +62,15 @@ export class InscriptionComponent {
       .inscription$(this.inscriptionForm.value)
       .pipe(
         take(1),
-        tap((reponse) => this.serviceSuccess.setDataSuccess(reponse)),
         catchError((error) => {
           console.error(error);
+          this.alertService.setAlert('Une erreur est survenue');
           return EMPTY; //Couper le flux,
         }),
-        finalize(() => this.router.navigate(['/connexion']))
+        tap((reponse) => {
+          this.serviceSuccess.setDataSuccess(reponse);
+          this.router.navigate(['/connexion']);
+        })
       )
       .subscribe();
     //status: 409, error statusCode	409

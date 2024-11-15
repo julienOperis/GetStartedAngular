@@ -1,0 +1,12 @@
+.alert-container {
+    padding: 1rem;
+  &.success {
+    background-color: green;
+  }
+  &.warning {
+    background-color: orange;
+  }
+  &.error {
+    background-color: red;
+  }
+}
