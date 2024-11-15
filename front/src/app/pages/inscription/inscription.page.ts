@@ -40,10 +40,10 @@ export class InscriptionComponent {
   ) {
     this.inscriptionForm = this.fb.group(
       {
-        email: new FormControl('email', [Validators.required,  emailValidator()]),
-        password: new FormControl(['password', Validators.required,Validators.minLength(4)]),
-        firstnam: new FormControl(['firstname', Validators.required,Validators.minLength(4)]),
-        lastname: new FormControl(['lastname', Validators.required,Validators.minLength(4)])
+        firstname: new FormControl('', [Validators.required,Validators.minLength(4)]),
+        lastname: new FormControl('',[Validators.required,Validators.minLength(4)]),
+        email: new FormControl('', [Validators.required,  emailValidator()]),
+        password: new FormControl('',[Validators.required,Validators.minLength(4)]),
       }
     );    
   }

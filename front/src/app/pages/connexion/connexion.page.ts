@@ -14,14 +14,6 @@ import { ServiceSuccess } from '../../core/services/serviceSuccess.service';
 import { emailValidator } from '../../core/validators/email.validator';
 
 
-/**
- * Make all properties in T optional
- */
-type Test<T> = {
-  [P in keyof T]?: T[P];
-};
-
-
 @Component({
   selector: 'app-connexion',
   standalone: true,
@@ -51,10 +43,9 @@ export class ConnexionComponent implements OnInit{
   constructor(private fb: FormBuilder, private serviceSuccess:ServiceSuccess, public formService:FormService) {
     this.loginForm = this.fb.group(
     {
-      email: new FormControl('email', [Validators.required,  emailValidator()]),
-      password: new FormControl(['password', Validators.required,Validators.minLength(4)])
+      email: new FormControl('', [Validators.required,  emailValidator()]),
+      password: new FormControl('', [Validators.required,Validators.minLength(4)])
     });
-    console.log(this.loginForm);
   }
 
   public onBouttonConnexion(): void {
@@ -65,7 +56,6 @@ export class ConnexionComponent implements OnInit{
 
     if (this.loginForm.valid) {
     } else {
-      console.log('invalide');
       this.loginForm.get('email')?.patchValue('');
       this.loginForm.get('password')?.patchValue('');
     }
