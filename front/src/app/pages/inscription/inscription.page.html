@@ -7,7 +7,7 @@
         <app-dialoggeneric></app-dialoggeneric>
         <input
         [ngClass]="{
-            error: formService.formIsInvalidTouched('firstname',inscriptionForm)
+            error: formIsInvalidTouchedHtml('firstname')
           }"
         formControlName="firstname"
         placeholder="Firstame"
@@ -15,7 +15,7 @@
         />
         <input
         [ngClass]="{
-            error: formService.formIsInvalidTouched('lastname',inscriptionForm)
+            error: formIsInvalidTouchedHtml('lastname')
           }"
         formControlName="lastname"
         placeholder="Lastname"
@@ -23,7 +23,7 @@
         />
         <input
         [ngClass]="{
-          error: formService.formIsInvalidTouched('email',inscriptionForm)
+          error: formIsInvalidTouchedHtml('email')
         }"
         formControlName="email"
         placeholder="Email"
@@ -31,7 +31,7 @@
         />
         <input
         [ngClass]="{
-          error: formService.formIsInvalidTouched('password',inscriptionForm)
+          error: formIsInvalidTouchedHtml('password')
         }"
         formControlName="password"
         type="password"

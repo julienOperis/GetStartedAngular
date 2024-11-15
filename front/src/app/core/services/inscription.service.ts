@@ -12,7 +12,7 @@ export class InscriptionService {
   constructor(private httpClient: HttpClient) { }
 
 
-  public inscription(user:UserRequest):Observable<User>{
+  public inscription$(user:UserRequest):Observable<User>{
     console.log('USER ENVOIE');
     console.log(user);
     return this.httpClient.post<User>("http://localhost:3000/users",user)

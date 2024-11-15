@@ -3,12 +3,25 @@ import { Component, OnInit } from '@angular/core';
 import {RouterLink, RouterModule} from '@angular/router';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { Data } from '@angular/router';
-import { AUTH_FORM_MAIL_PASS, FormService } from '../../core/services/form.service';
+import { FormService } from '../../core/services/form.service';
 import { ServiceSuccess } from '../../core/services/serviceSuccess.service';
+import { emailValidator } from '../../core/validators/email.validator';
+
+
+/**
+ * Make all properties in T optional
+ */
+type Test<T> = {
+  [P in keyof T]?: T[P];
+};
+
+
 @Component({
   selector: 'app-connexion',
   standalone: true,
@@ -16,6 +29,7 @@ import { ServiceSuccess } from '../../core/services/serviceSuccess.service';
   templateUrl: './connexion.page.html',
   styleUrl: './connexion.page.scss',
 })
+
 
 export class ConnexionComponent implements OnInit{
 
@@ -35,9 +49,12 @@ export class ConnexionComponent implements OnInit{
   public showMsgInvalidFrom: boolean;
 
   constructor(private fb: FormBuilder, private serviceSuccess:ServiceSuccess, public formService:FormService) {
-    this.loginForm = this.fb.group(AUTH_FORM_MAIL_PASS);
-    console.log("AUTH_FORM_MAIL_PASS");
-    console.log(AUTH_FORM_MAIL_PASS);
+    this.loginForm = this.fb.group(
+    {
+      email: new FormControl('email', [Validators.required,  emailValidator()]),
+      password: new FormControl(['password', Validators.required,Validators.minLength(4)])
+    });
+    console.log(this.loginForm);
   }
 
   public onBouttonConnexion(): void {
@@ -54,5 +71,7 @@ export class ConnexionComponent implements OnInit{
     }
     this.isFormSubmitted = false;
   }
-
+  public formIsInvalidTouchedHtml(nomChamps:string):void{
+    this.formService.formIsInvalidTouched(nomChamps,this.loginForm);
+  }
 }
