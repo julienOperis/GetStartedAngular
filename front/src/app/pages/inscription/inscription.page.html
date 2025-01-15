@@ -7,17 +7,17 @@
         <!-- <app-dialoggeneric></app-dialoggeneric> -->
         <input
         [ngClass]="{
-            error: formIsInvalidTouchedHtml('firstname')
+            error: formIsInvalidTouchedHtml('firstName')
           }"
-        formControlName="firstname"
+        formControlName="firstName"
         placeholder="Firstame"
         type="firstName"
         />
         <input
         [ngClass]="{
-            error: formIsInvalidTouchedHtml('lastname')
+            error: formIsInvalidTouchedHtml('lastName')
           }"
-        formControlName="lastname"
+        formControlName="lastName"
         placeholder="Lastname"
         type="lastName"
         />
@@ -37,7 +37,7 @@
         type="password"
         placeholder="Password"
         />
-        <button type="submit">S'inscrire</button>
+        <button type="submit">Register</button>
         <button routerLink="/connexion" >Connexion</button>
     </form>
 </div>
