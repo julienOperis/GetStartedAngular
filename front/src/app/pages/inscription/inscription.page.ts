@@ -25,6 +25,7 @@ import { AlertService } from '../../core/services/alert.service';
   templateUrl: './inscription.page.html',
   styleUrl: './inscription.page.scss',
 })
+
 export class InscriptionComponent {
   public inscriptionForm: FormGroup;
   public inscriptionFormControl: FormControl;
@@ -55,6 +56,14 @@ export class InscriptionComponent {
     });
   }
 
+  ngOnInit() {
+
+    this.inscriptionForm.get('firstName')?.setValue("operis");
+    this.inscriptionForm.get('lastName')?.setValue("operis");
+    this.inscriptionForm.get('email')?.setValue("julien.boulay@operis.fr");
+    this.inscriptionForm.get('password')?.setValue("Operis");
+  }
+
   public inscription(): void {
     //Observable<User>
 
@@ -64,12 +73,13 @@ export class InscriptionComponent {
         take(1),
         catchError((error) => {
           console.error(error);
-          this.alertService.setAlert('Une erreur est survenue');
+          console.error(error.error.message);
+          this.alertService.setAlert('Une erreur est survenue :'+error.error.message);
           return EMPTY; //Couper le flux,
         }),
         tap((reponse) => {
           this.serviceSuccess.setDataSuccess(reponse);
-          //this.router.navigate(['/connexion']);
+          this.router.navigate(['/connexion']);
         })
       )
       .subscribe();

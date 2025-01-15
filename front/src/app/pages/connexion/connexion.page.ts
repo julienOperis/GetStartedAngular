@@ -14,6 +14,7 @@ import { ServiceSuccess } from '../../core/services/serviceSuccess.service';
 import { emailValidator } from '../../core/validators/email.validator';
 import { AuthService } from '../../core/services/auth.service';
 import { catchError, EMPTY, finalize, take, tap } from 'rxjs';
+import { AlertService } from '../../core/services/alert.service';
 
 @Component({
   selector: 'app-connexion',
@@ -35,6 +36,10 @@ export class ConnexionComponent implements OnInit{
       console.log(successdata['email']);
       this.loginForm.get('email')?.patchValue(successdata['email']);
     }
+    
+      this.loginForm.get('email')?.setValue("julien.boulay@operis.fr");
+      this.loginForm.get('password')?.setValue("Operis");
+    
   }
 
   public loginForm: FormGroup;
@@ -42,7 +47,7 @@ export class ConnexionComponent implements OnInit{
   public showMsgInvalidFrom: boolean;
   private router: Router;
 
-  constructor(private fb: FormBuilder, private serviceSuccess:ServiceSuccess, private authService: AuthService, public formService:FormService) {
+  constructor(private fb: FormBuilder, private serviceSuccess:ServiceSuccess, private authService: AuthService, public formService:FormService,    private alertService:AlertService) {
     this.loginForm = this.fb.group(
     {
       email: new FormControl('', [Validators.required,  emailValidator()]),
@@ -79,6 +84,8 @@ export class ConnexionComponent implements OnInit{
         tap((reponse) => this.serviceSuccess.setDataSuccess(reponse)),
         catchError((error) => {
           console.error(error);
+          this.alertService.setAlert('Une erreur est survenue :'+error.error.message);
+          
           return EMPTY; //Couper le flux,
         }),
         finalize(() => this.router.navigate(['/profil']))

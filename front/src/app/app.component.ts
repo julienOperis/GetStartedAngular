@@ -13,6 +13,7 @@ import { AlertComponent } from './components/alert/alert.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
+
 export class AppComponent implements OnInit{
   //Angular 18 injection de depandence
   public alertService = inject(AlertService);
