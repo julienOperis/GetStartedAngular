@@ -295,4 +295,160 @@ Les validateurs permettent de garantir que les données entrantes respectent les 
 **Installation**
 ```
 npm install @developer-partners/ngx-modal-dialog
-`
+```
+
+
+
+# Les Opérateurs en TypeScript
+
+TypeScript, étant une surcouche de JavaScript, prend en charge les m?mes opérateurs que JavaScript. Voici une liste détaillée des différents types d'opérateurs avec des exemples et explications.
+
+---
+
+## 1. **Opérateurs Arithmétiques**
+Utilisés pour effectuer des calculs mathématiques.
+
+| Opérateur | Description         | Exemple          | Résultat  |
+|-----------|---------------------|------------------|-----------|
+| `+`       | Addition            | `5 + 2`          | `7`       |
+| `-`       | Soustraction        | `5 - 2`          | `3`       |
+| `*`       | Multiplication      | `5 * 2`          | `10`      |
+| `/`       | Division            | `5 / 2`          | `2.5`     |
+| `%`       | Modulo (reste)      | `5 % 2`          | `1`       |
+| `++`      | Incrémentation      | `let a = 5; a++` | `6`       |
+| `--`      | Décrémentation      | `let a = 5; a--` | `4`       |
+
+---
+
+## 2. **Opérateurs de Comparaison**
+Utilisés pour comparer deux valeurs et retourner un booléen (`true` ou `false`).
+
+| Opérateur | Description                        | Exemple          | Résultat |
+|-----------|------------------------------------|------------------|----------|
+| `==`      | Égalité de valeur                 | `5 == '5'`       | `true`   |
+| `===`     | Égalité stricte (valeur + type)   | `5 === '5'`      | `false`  |
+| `!=`      | Différence de valeur             | `5 != '5'`       | `false`  |
+| `!==`     | Différence stricte               | `5 !== '5'`      | `true`   |
+| `<`       | Inférieur ?                      | `5 < 10`         | `true`   |
+| `>`       | Supérieur ?                      | `5 > 10`         | `false`  |
+| `<=`      | Inférieur ou égal                | `5 <= 5`         | `true`   |
+| `>=`      | Supérieur ou égal                | `5 >= 6`         | `false`  |
+
+---
+
+## 3. **Opérateurs Logiques**
+Utilisés pour combiner plusieurs conditions.
+
+| Opérateur | Description                     | Exemple                  | Résultat |
+|-----------|---------------------------------|--------------------------|----------|
+| `&&`      | ET logique                     | `true && false`          | `false`  |
+| `||`      | OU logique                     | `true || false`          | `true`   |
+| `!`       | NON logique (négation)         | `!true`                  | `false`  |
+
+---
+
+## 4. **Opérateurs Bit-?-Bit**
+Op?rent directement sur les représentations binaires des nombres.
+
+| Opérateur | Description                     | Exemple        | Résultat |
+|-----------|---------------------------------|----------------|----------|
+| `&`       | ET bit-?-bit                   | `5 & 1`        | `1`      |
+| `|`       | OU bit-?-bit                  | `5 | 1`        | `5`      |
+| `^`       | OU exclusif (XOR)             | `5 ^ 1`        | `4`      |
+| `~`       | NON bit-?-bit                 | `~5`           | `-6`     |
+| `<<`      | Décalage ? gauche             | `5 << 1`       | `10`     |
+| `>>`      | Décalage ? droite             | `5 >> 1`       | `2`      |
+| `>>>`     | Décalage ? droite sans signe  | `5 >>> 1`      | `2`      |
+
+---
+
+## 5. **Opérateurs d'Assignation**
+Utilisés pour attribuer une valeur ? une variable.
+
+| Opérateur | Description                  | Exemple      | Résultat |
+|-----------|------------------------------|--------------|----------|
+| `=`       | Assignation simple           | `a = 5`      | `a = 5`  |
+| `+=`      | Addition et assignation      | `a += 2`     | `a = 7`  |
+| `-=`      | Soustraction et assignation  | `a -= 2`     | `a = 3`  |
+| `*=`      | Multiplication et assignation| `a *= 2`     | `a = 10` |
+| `/=`      | Division et assignation      | `a /= 2`     | `a = 2.5`|
+| `%=`      | Modulo et assignation        | `a %= 2`     | `a = 1`  |
+
+---
+
+## 6. **Opérateur Ternaire**
+Simplifie les expressions conditionnelles.
+
+**Syntaxe :**
+```typescript
+condition ? valeurSiVrai : valeurSiFaux;
+```
+
+**Exemple :**
+```typescript
+const age = 18;
+const isAdult = age >= 18 ? 'Oui' : 'Non'; // Résultat : 'Oui'
+```
+
+---
+
+## 7. **Opérateurs de Chaîne**
+
+| Opérateur | Description             | Exemple             | Résultat         |
+|-----------|-------------------------|---------------------|------------------|
+| `+`       | Concaténation de chaîne| `'Hello' + 'World'` | `'HelloWorld'`   |
+| `+=`      | Concaténation et assignation | `a += 'World'` | `a = 'HelloWorld'` |
+
+---
+
+## 8. **Opérateurs de Type (TypeScript)**
+Spécifiques ? TypeScript pour vérifier ou convertir des types.
+
+| Opérateur | Description                             | Exemple                       | Résultat          |
+|-----------|-----------------------------------------|-------------------------------|-------------------|
+| `typeof`  | Renvoie le type d'une variable         | `typeof 42`                  | `'number'`        |
+| `instanceof` | Vérifie si un objet appartient ? une classe | `obj instanceof MyClass` | `true / false`    |
+| `as`      | Conversion de type explicite           | `value as string`            | `string`          |
+| `<type>`  | Conversion de type (alternative ? `as`) | `<string>value`              | `string`          |
+
+---
+
+## 9. **Opérateurs Optionnels (TypeScript)**
+
+### a. **Opérateur de Chaînage Optionnel (`?.`)**
+Permet d'accéder ? une propriété sans vérifier explicitement si l'objet est défini.
+
+**Exemple :**
+```typescript
+const user = { name: 'John', address: null };
+console.log(user?.address?.city); // Résultat : undefined
+```
+
+### b. **Opérateur de Coalescence Nulle (`??`)**
+Retourne la valeur de droite uniquement si la valeur de gauche est `null` ou `undefined`.
+
+**Exemple :**
+```typescript
+const name = null;
+const defaultName = name ?? 'Anonymous'; // Résultat : 'Anonymous'
+```
+
+---
+
+## 10. **Opérateurs Avancés (ES6+)**
+
+| Opérateur          | Description                               | Exemple                        | Résultat           |
+|--------------------|-------------------------------------------|--------------------------------|--------------------|
+| `...` (spread)     | Étale les éléments d'un tableau ou objet  | `[...array1, ...array2]`      | Nouveau tableau    |
+| `...` (rest)       | Rassemble les arguments restants          | `function(...args) {}`        | Tableau d'arguments|
+
+---
+
+Ce guide couvre les opérateurs les plus couramment utilisés en TypeScript. Pour aller plus loin, vous pouvez explorer leur comportement spécifique dans le contexte de types complexes et de fonctionnalités avancées de TypeScript.
+
+
+# Tâche en cours
+## AFAIRE
+
+* Remonte les erreurs du back au Front dans l'alert
+* Faire la session avec le LocalStorage
