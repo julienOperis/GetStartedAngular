@@ -4,7 +4,7 @@
     [formGroup]="inscriptionForm"
     (submit)="inscription()" >
         <h1>Formulaire d'inscription</h1>
-        <app-dialoggeneric></app-dialoggeneric>
+        <!-- <app-dialoggeneric></app-dialoggeneric> -->
         <input
         [ngClass]="{
             error: formIsInvalidTouchedHtml('firstname')
@@ -35,7 +35,7 @@
         }"
         formControlName="password"
         type="password"
-        placeholder="Mot de passe"
+        placeholder="Password"
         />
         <button type="submit">S'inscrire</button>
         <button routerLink="/connexion" >Connexion</button>
