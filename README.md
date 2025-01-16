@@ -291,15 +291,23 @@ Les validateurs permettent de garantir que les données entrantes respectent les 
 # Tuto
 ## ANGULAR
 
+[Get started Javascript](https://www.w3schools.com/js/)
+
+[Get started TypeScript](https://www.typescriptlang.org/fr/docs/handbook/typescript-in-5-minutes.html)
+
+[Get started with The Angular CLI](https://angular.dev/tools/cli)
+
+[Get started with rxjs](https://rxjs.dev/guide/overview)
+
 [Stocker un état dans un service avec BehaviorSubject ](https://angular.fr/services/behavior-subject)
 
 [Comment afficher une boîte de dialogue modale dans Angular](https://hackernoon.com/lang/fr/comment-afficher-une-bo%C3%AEte-de-dialogue-modale-en-angulaire)
+
+
 **Installation**
 ```
 npm install @developer-partners/ngx-modal-dialog
 ```
-
-
 
 # Les Opérateurs en TypeScript
 
