@@ -31,4 +31,8 @@ export class AuthService {
     return this.httpClient.post<Login>("http://localhost:3000/auth/login",login)
   }
 
+  public setToken(token:string):void{
+    //localstorage
+    localStorage.setItem('token',token);
+  }
 }
