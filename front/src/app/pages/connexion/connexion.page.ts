@@ -15,6 +15,7 @@ import { emailValidator } from '../../core/validators/email.validator';
 import { AuthService } from '../../core/services/auth.service';
 import { catchError, EMPTY, finalize, take, tap } from 'rxjs';
 import { AlertService } from '../../core/services/alert.service';
+import { AlertComponent } from '../../components/alert/alert.component';
 
 @Component({
   selector: 'app-connexion',
@@ -83,8 +84,12 @@ export class ConnexionComponent implements OnInit{
         take(1),
         tap((reponse) => this.serviceSuccess.setDataSuccess(reponse)),
         catchError((error) => {
-          console.error(error);
-          this.alertService.setAlert('Une erreur est survenue :'+error.error.message);
+          console.error(error.status);
+          
+          if(error.status == 401)
+            this.alertService.setAlert('Incorrect email or password',AlertComponent.ERROR);
+          else
+            this.alertService.setAlert('An error has occurred :'+error.error.message,AlertComponent.ERROR);
           
           return EMPTY; //Couper le flux,
         }),

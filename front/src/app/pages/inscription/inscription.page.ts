@@ -18,6 +18,7 @@ import { ServiceSuccess } from '../../core/services/serviceSuccess.service';
 import { InscriptionService } from '../../core/services/inscription.service';
 import { emailValidator } from '../../core/validators/email.validator';
 import { AlertService } from '../../core/services/alert.service';
+import { AlertComponent } from '../../components/alert/alert.component';
 @Component({
   selector: 'app-inscription',
   standalone: true,
@@ -74,7 +75,7 @@ export class InscriptionComponent {
         catchError((error) => {
           console.error(error);
           console.error(error.error.message);
-          this.alertService.setAlert('Une erreur est survenue :'+error.error.message);
+          this.alertService.setAlert('Une erreur est survenue :'+error.error.message,AlertComponent.ERROR);
           return EMPTY; //Couper le flux,
         }),
         tap((reponse) => {
