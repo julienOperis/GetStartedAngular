@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "dev-backend": "cd ../2024_centrale_projet_back/ && npm run start ",
+    "dev-backend": "cd ../2024_centrale_projet_back/ && npm run start",
     "dev-fontend": "npm run start",
+    "dev-envdev": "concurrently --kill-others \"npm run dev-backend\" \"npm run dev-fontend\"",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
@@ -20,6 +21,7 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
+    "concurrently": "^9.1.2",
     "primeng": "^17.18.11",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
