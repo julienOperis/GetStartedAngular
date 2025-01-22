@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, provideRouter, Router, RouterLink, RouterModule } from '@angular/router';
 import {
   FormBuilder,
   FormControl,
@@ -17,31 +17,22 @@ import { catchError, EMPTY, finalize, take, tap } from 'rxjs';
 import { AlertService } from '../../core/services/alert.service';
 import { AlertComponent } from '../../components/alert/alert.component';
 
+
+
 @Component({
   selector: 'app-connexion',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass, RouterModule],
+  imports: [ReactiveFormsModule, NgClass, RouterLink],
   templateUrl: './connexion.page.html',
   styleUrl: './connexion.page.scss',
 })
 
 
 export class ConnexionComponent implements OnInit{
-
-  ngOnInit(): void {    
-    let successdata:Data;
-    
-    successdata = this.serviceSuccess.getDataSuccess();
-    if(successdata){
-      console.log(' ngOnInit getDataSuccess');
-      console.log(successdata['email']);
-      this.loginForm.get('email')?.patchValue(successdata['email']);
-    }
-    
-      this.loginForm.get('email')?.setValue("julien.boulay@operis.fr");
-      this.loginForm.get('password')?.setValue("Operis");
-    
-  }
+//v17
+//  constructor(private route: ActivatedRoute) {}
+//v18
+private route=inject(ActivatedRoute)
 
   public loginForm: FormGroup;
   public isFormSubmitted: boolean = false;
@@ -54,6 +45,28 @@ export class ConnexionComponent implements OnInit{
       email: new FormControl('', [Validators.required,  emailValidator()]),
       password: new FormControl('', [Validators.required,Validators.minLength(4)])
     });
+  }
+
+
+  ngOnInit(): void {    
+    let successdata:Data;
+    
+    successdata = this.serviceSuccess.getDataSuccess();
+    if(successdata){
+      console.log(' ngOnInit getDataSuccess');
+      console.log(successdata['email']);
+      this.loginForm.get('email')?.patchValue(successdata['email']);
+    }
+    
+
+    
+  }
+
+
+  public setLoginData(): void {
+    this.route.paramMap.pipe(
+      tap((loginData)=> this.loginForm.get('email')?.setValue(loginData.get('email'))))
+    .subscribe();
   }
 
   public onBouttonConnexion(): void {

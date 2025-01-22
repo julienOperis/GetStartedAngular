@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Data } from '@angular/router';
+import { AppComponent } from '../../app.component';
 
 @Injectable({
   providedIn: 'root'
@@ -19,4 +20,14 @@ export class ServiceSuccess {
   public getDataSuccess(): Data {
     return this.data;
   }
+
+  public setLoginOnSucess():void {
+    //this.isLoggedIn = true;
+  }
+
+
+  public showStatutAlert(): Data {
+    return this.data;
+  }
+
 }

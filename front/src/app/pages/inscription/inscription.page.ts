@@ -80,7 +80,8 @@ export class InscriptionComponent {
         }),
         tap((reponse) => {
           this.serviceSuccess.setDataSuccess(reponse);
-          this.router.navigate(['/connexion']);
+
+          this.router.navigate(['/connexion',{login:this.inscriptionForm.get('email')?.value}])
         })
       )
       .subscribe();
