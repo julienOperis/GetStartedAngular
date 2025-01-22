@@ -69,6 +69,13 @@ const mergedObj = { ...obj1, ...obj2 };
 console.log(mergedObj); // { a: 1, b: 3, c: 4 }
 ```
 
+```typescript
+@Injectable({ // Pour dire que c'est un service
+  providedIn: 'root' // Pour dire qu'on partage ce même composant pour les autres composants
+})
+```
+
+
 Comprendre les Composants (Components) , Liaison de Données (Data Binding), Utiliser les Directives , Travailler avec les Services et l’Injection de Dépendances 
 # GetStartedAngular
 GetStartedAngular
