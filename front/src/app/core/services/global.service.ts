@@ -9,6 +9,7 @@ export class GlobalService {
   userIsLoggedIn: boolean = false;
   constructor(){}
 
+
   // Méthodes pour modifier les variables globales
   setLoginStatus(status: boolean): void {
     this.userIsLoggedIn = status;

@@ -41,16 +41,15 @@ export class AuthService {
   public setToken(token:string):void{
     //localstorage
     this._token.next(token);
-    localStorage.setItem('token',token);
-    
+    localStorage.setItem('token',token);    
   }
   
 
-  public removeToken(token:string):void{
-    this._token.next(null);
-    localStorage.removeItem('token');
+  public removeToken(token:string):void{    
     //vider le localstorage
+    localStorage.removeItem('token');
     //vider le flux
+    this._token.next(null);
     //faire le guard
   }
 }

@@ -99,12 +99,185 @@ operator typescript
 * [Application angular multi-langue avec ngx-translate](https://ngx-translate.org/)
 * [Interactive diagrams of Rx Observables](https://rxmarbles.com/)
 * [RxJS Operators](https://rxjs.dev/guide/operators)
+
 **NgRx**
+
 * [NgRx](https://ngrx.io/)
 NgRx est une biblioth?que de gestion d'état pour les applications Angular, basée sur le mod?le Redux. Elle permet de centraliser, gérer et synchroniser l'état (les données) de l'application de mani?re prédictible et efficace. Voici une explication détaillée?:
 
 * Input Parent vers l''enfant Oupout invers pour des composants
-* Guards - Protection des routes (avoir acc?s que si on ? un compte ? telle route)
+
+# Guards - Protection des routes 
+
+***Un Guard sur Angular est une fonctionnalité qui vous permet de contrôler l'acc?s ? des routes spécifiques dans votre application. Vous pouvez utiliser des guards pour exécuter certaines vérifications ou actions avant de permettre l'acc?s ? une route, par exemple pour vérifier si l'utilisateur est authentifié ou a les droits d'acc?s appropriés.**
+
+1. Créez un guard, par exemple dans un fichier auth.guard.ts :
+
+```TS
+import { inject } from "@angular/core";
+import { Router } from "@angular/router";
+
+export const AuthGuard = () => {
+    return true
+}
+```
+
+Utilisez ce guard dans votre route (dans le fichier app.routes.ts par exemple) :
+
+```TS
+import { AuthGuard } from './auth.guard';
+import { AdminComponent } from './admin.component';
+
+const routes: Routes = [
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard], // Utilisation du guard
+  }
+];
+```
+Exemple avec l'authentification
+Voici un exemple de service d'authentification que vous pouvez utiliser avec le guard ci-dessus :
+
+
+Qu'est qu'un guard sur Angular ? [?](#qu-est-qu-un-guard-sur-angular)
+=====================================================================
+
+Un Guard sur Angular est une fonctionnalité qui vous permet de contrôler l'acc?s ? des routes spécifiques dans votre application. Vous pouvez utiliser des guards pour exécuter certaines vérifications ou actions avant de permettre l'acc?s ? une route, par exemple pour vérifier si l'utilisateur est authentifié ou a les droits d'acc?s appropriés.
+
+Voici un exemple tr?s simple
+
+1.  Créez un guard, par exemple dans un fichier `auth.guard.ts` :
+
+```TS
+    import { inject } from "@angular/core";
+    import { Router } from "@angular/router";
+    
+    export const AuthGuard = () => {
+        return true
+    }
+```
+
+1.  Utilisez ce guard dans votre route (dans le fichier `app.routes.ts` par exemple) :
+
+```TS
+
+    import { AuthGuard } from './auth.guard';
+    import { AdminComponent } from './admin.component';
+    
+    const routes: Routes = [
+      {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [AuthGuard], // Utilisation du guard
+      }
+    ];
+```
+
+Exemple avec l'authentification [?](#exemple-avec-l-authentification)
+---------------------------------------------------------------------
+
+Voici un exemple de service d'authentification que vous pouvez utiliser avec le guard ci-dessus :
+
+```TS
+    import { Injectable } from '@angular/core';
+    
+    @Injectable({
+      providedIn: 'root'
+    })
+    export class AuthService {
+      private isAuthenticated = false;
+    
+      login() {
+        this.isAuthenticated = true;
+      }
+    
+      logout() {
+        this.isAuthenticated = false;
+      }
+    
+      isAuthenticated(): boolean {
+        return this.isAuthenticated;
+      }
+    }
+```
+
+Ce service contient une méthode `login` qui définit la variable `isAuthenticated` sur `true`, une méthode `logout` qui définit la variable `isAuthenticated` sur `false`, et une méthode `isAuthenticated` qui retourne la valeur de la variable `isAuthenticated`. Vous pouvez utiliser ces méthodes pour gérer l'authentification de l'utilisateur et pour contrôler l'acc?s ? certaines routes avec le guard `AuthGuard`.
+
+> Notez que cet exemple est tr?s simplifié et ne prend pas en compte la persistance de l'état d'authentification entre les sessions ou la vérification des données d'identification de l'utilisateur. Il est recommandé de mettre en place une gestion de l'authentification plus compl?te et sécurisée dans votre application.
+
+### Le guard [?](#le-guard)
+
+Voici un exemple de guard qui vérifie si l'utilisateur est connecté ? l'application avant de lui permettre l'acc?s ? une route :
+
+```TS
+    import { inject } from "@angular/core";
+    import { Router } from "@angular/router";
+    import { AuthService } from "./auth.service";
+    
+    export const AuthGuard = () => {
+        const auth = inject(AuthService);
+        const router = inject(Router);
+    
+        if(!auth.isAuthenticated()) {
+            router.navigateByUrl('/login')
+            return false
+        }
+        return true
+    }
+```
+
+Dans ce cas, le code crée un "AuthGuard" qui vérifie si un utilisateur est authentifié avant de lui permettre d'accéder ? une route protégée.
+
+1.  On crée la fonction `AuthGuard` qui sera utilisée comme guard. Dans cette fonction, on injecte les dépendances pour `AuthService` et `Router`.
+    
+2.  On vérifie si l'utilisateur est authentifié en utilisant la méthode `isAuthenticated()` de l'instance `auth`. Cette méthode doit ?tre implémentée dans le service d'authentification (`AuthService`) pour déterminer si un utilisateur est authentifié ou non.
+    
+3.  Si l'utilisateur n'est pas authentifié (c'est-?-dire si `auth.isAuthenticated()` renvoie `false`), on redirige l'utilisateur vers la page de connexion en utilisant la méthode `navigateByUrl('/login')` de l'instance `router`. Ensuite, on retourne `false` pour indiquer que l'acc?s ? la route protégée n'est pas autorisé.
+    
+4.  Si l'utilisateur est authentifié, on retourne simplement `true`, ce qui permet l'acc?s ? la route protégée.
+    
+
+On l'applique au routeur:
+
+```TS
+    // ... code précédent
+    
+    const routes: Routes = [
+      {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [AuthGuard], // Utilisation du guard
+      }
+    ];
+```
+
+Vous pouvez également utiliser ce guard pour protéger plusieurs routes en utilisant un tableau de routes imbriquées, comme ceci :
+
+```TS
+
+    // ... code précédent
+    
+    const routes: Routes = [
+      {
+        path: 'admin',
+        canActivate: [AuthGuard], // Utilisation du guard
+        children: [
+          {
+            path: '',
+            component: AdminComponent
+          },
+          {
+            path: 'users',
+            component: UsersComponent
+          }
+        ]
+      }
+    ];
+```
+Dans cet exemple, le guard `AuthGuard` sera utilisé pour contrôler l'acc?s ? toutes les routes enfants de `/admin`, y compris `/admin` et `/admin/users`. Si l'utilisateur n'est pas connecté, il ne pourra pas accéder ? aucune de ces routes.
+
+
 * Resolvers - Permet de faire des choses avant l''initialisation des pages, (Information du profil utilisateurs au chargement de la page utilisateur )
 * Interceptors - Intecepter les requ?te http, pour la gestion d''erreur 
 * Store - Service Angular ou (Librairies ngRx plus tard) Moyen de partager les données sans qu''il soit parents

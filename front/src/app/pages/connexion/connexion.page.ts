@@ -50,16 +50,15 @@ private route=inject(ActivatedRoute)
 
   ngOnInit(): void {    
     let successdata:Data;
-    
+    this.loginForm.get('email')?.setValue("julien.boulay@operis.fr");
+    this.loginForm.get('password')?.setValue("Operis");
     successdata = this.serviceSuccess.getDataSuccess();
     if(successdata){
       console.log(' ngOnInit getDataSuccess');
       console.log(successdata['email']);
       this.loginForm.get('email')?.patchValue(successdata['email']);
     }
-    
 
-    
   }
 
 
