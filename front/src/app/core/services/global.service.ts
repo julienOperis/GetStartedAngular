@@ -1,22 +1,15 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class GlobalService {
+  private authService = inject(AuthService);
 
-  userIsLoggedIn: boolean = false;
-  constructor(){}
-
-
-  // Méthodes pour modifier les variables globales
-  setLoginStatus(status: boolean): void {
-    this.userIsLoggedIn = status;
-  }
 
   getLoginStatus(): boolean {
-    return this.userIsLoggedIn;
+    return this.authService.userIsAuthenticated();
   }
-
 }

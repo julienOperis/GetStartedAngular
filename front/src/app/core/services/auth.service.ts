@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
-
+  private isAuthenticated = false;
   private _apiUrl: string = 'http://localhost:3000/auth'
 
 
@@ -34,23 +34,29 @@ export class AuthService {
   
     //Subject en observable
 
-    public getToken(token:string):void{
-      localStorage.getItem('token');
-    }
-    
-  public setToken(token:string):void{
-    //localstorage
-    this._token.next(token);
-    localStorage.setItem('token',token);    
+  public getToken():string | null{
+    return localStorage.getItem('token');
   }
   
-
-  public removeToken(token:string):void{    
-    //vider le localstorage
+  public setToken(token:string):void{
+    this._token.next(token);
+    localStorage.setItem('token',token);         
+  }
+  
+  public removeToken():void{    
     localStorage.removeItem('token');
-    //vider le flux
     this._token.next(null);
-    //faire le guard
+  }
+
+  login() {
+    this.isAuthenticated = true;
+  }
+
+  logout() {
+    this.removeToken();
+  }
+
+  public userIsAuthenticated(): boolean {
+    return !!this.getToken();
   }
 }
-

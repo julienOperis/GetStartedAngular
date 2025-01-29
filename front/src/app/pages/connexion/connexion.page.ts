@@ -37,7 +37,7 @@ private route=inject(ActivatedRoute)
   public loginForm: FormGroup;
   public isFormSubmitted: boolean = false;
   public showMsgInvalidFrom: boolean;
-  private router: Router;
+  private router = inject(Router);
 
   constructor(private fb: FormBuilder, private serviceSuccess:ServiceSuccess, private authService: AuthService, public formService:FormService,    private alertService:AlertService) {
     this.loginForm = this.fb.group(
@@ -105,7 +105,10 @@ private route=inject(ActivatedRoute)
           
           return EMPTY; //Couper le flux,
         }),
-        finalize(() => this.router.navigate(['/profil']))
+        finalize(() => {
+          console.log('navigation vers /accueil');
+          this.router.navigate(['/accueil']);
+        })
       )
       .subscribe();
     //status: 409, error statusCode	409
