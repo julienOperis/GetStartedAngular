@@ -9,8 +9,8 @@ import { AuthService } from './auth.service';
 
 export class ServiceSuccess {
   private data:Data;
-  private authService: AuthService;
-  constructor() { this.authService=  inject(AuthService)  }
+  private authService = inject(AuthService);
+  
 
   public setDataSuccess(dataReponse:Data): void {
     this.data = dataReponse;

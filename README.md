@@ -278,9 +278,26 @@ Vous pouvez également utiliser ce guard pour protéger plusieurs routes en utilis
 Dans cet exemple, le guard `AuthGuard` sera utilisé pour contrôler l'acc?s ? toutes les routes enfants de `/admin`, y compris `/admin` et `/admin/users`. Si l'utilisateur n'est pas connecté, il ne pourra pas accéder ? aucune de ces routes.
 
 
+
+
 * Resolvers - Permet de faire des choses avant l''initialisation des pages, (Information du profil utilisateurs au chargement de la page utilisateur )
 * Interceptors - Intecepter les requ?te http, pour la gestion d''erreur 
 * Store - Service Angular ou (Librairies ngRx plus tard) Moyen de partager les données sans qu''il soit parents
+
+# Exemple d'interface générique pour gestion erreur API (back) :
+
+```TS
+interface ApiErrorResponse { 
+    message: string, // Message explicatif global pour l'utilisateur 
+    details: Details[], // Liste d'erreurs compl?te
+    metadonnees: { 
+      timestamp: string, // Moment de l'erreur au format ISO 
+      endpoint: string, // URL appelée (doit-on mettre le nom de domaine?) 
+      correlationId: string, // Identifiant de la requ?te pour pouvoir la suivre dans tous les services impactés (UUID) 
+    } 
+  } interface Details { // Champs présent pour tous les cas possibles code: string, // Un code identifiant l'erreur de façon unique pour simplifier le débogage. Ex : FORMAT_INVALIDE, OBLIGATOIRE message: string, // Message explicatif de cette erreur particuli?re pour l'utilisateur parametres:   Record<string, any>, // Morceaux dynamiques du message d'erreur si besoin de le reformuler pour différents persona localisation: string[], // Chemin dans la requ?te vers la partie problématique, permet de pointer précisément et programmatiquement. Ex : [ "body", "champs", "DX1NZ5" ] ou [ "headers", "Accept" ] 
+  } 
+```
 
 
 # Observable exemple d'utilisation
