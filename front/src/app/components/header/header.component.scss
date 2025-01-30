@@ -1,31 +1,34 @@
 
 .navbar {
     width: 100%;
-    height: 100vh;
+    height: 65px;
     display: flex;
     justify-content: center;
-    flex-direction: row;
-    align-items: baseline;
     gap: 1rem;
     
     ul {
-      width: 30%;
+      align-items: center;
+      gap: 1rem;
       font-size: 17px;
+      display: flex;
+      justify-content: center;
+
+      
+      
     }
     
     li {
-      display: inline;
-      flex-direction: row;
+ 
+      display: flex;
       justify-content: center;      
       gap: 1rem;
-      width: 30%;
-      padding-inline-start: 1rem;
+    
 
       a {
         text-decoration: none;
-        color: darkslategray;
-        
+        color: darkslategray;        
       }
+
       p {
         
         width: 100%;
@@ -34,8 +37,12 @@
         background-color: rgb(225, 225, 225);
         border-radius: 8px;
         padding-top: 8px;
-        padding-inline-start: 1rem;
+        
         text-align: center;
+      }
+      button {
+        padding-left: 1rem;
+        padding-right: 1rem;
       }
     }
   }
