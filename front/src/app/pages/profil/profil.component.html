@@ -1,1 +1,40 @@
-<p>profil works!</p>
+<div class="profil-container">
+    <div>
+        <h1>Profil</h1>
+        <img>
+    </div>
+
+    <form 
+    class="profil-form" 
+     >
+        <ul>
+            <li>
+                <!-- <app-dialoggeneric></app-dialoggeneric> -->
+                <label for="name">FirstName</label>
+                <input
+                name="name"
+                formControlName="firstName"
+
+                type="firstName"        
+                />
+            </li>
+            <li>
+                <label for="name">Lastname</label>
+                <input
+                formControlName="lastName"
+
+                type="lastName"
+                />
+            </li>
+            <li>
+                <label for="Email">Email</label>
+                <input
+                formControlName="email"
+
+                type="email"
+                />
+            </li>
+            <button type="submit">Sauvegarde</button>
+    </ul>
+    </form>
+</div>

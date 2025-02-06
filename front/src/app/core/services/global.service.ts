@@ -12,4 +12,8 @@ export class GlobalService {
   getLoginStatus(): boolean {
     return this.authService.userIsAuthenticated();
   }
+
+
+  
+  
 }

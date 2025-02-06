@@ -8,7 +8,7 @@ import { ProfilComponent } from './pages/profil/profil.component';
 
 export const routes: Routes = [
   { path: 'accueil', component: AcceuileComponent, canActivate: [AuthGuard] }, // Utilisation du guard}
-  { path: '***', component: ProfilComponent }, // Utilisation du guard}
+  { path: 'profil', component: ProfilComponent , canActivate: [AuthGuard] }, // Utilisation du guard}
   { path: 'inscription', component: InscriptionComponent },
   { path: 'connexion', component: ConnexionComponent },
   { path: '', component: ConnexionComponent },
